@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  go-srv:
+    # depends_on: 
+    #   - service-b
+    container_name: go-srv
+    hostname: go-srv
+    # image: alpine
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    # entrypoint: /code/entrypoint.sh
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    volumes: 
+      - .:/workspace:cached
+      # - ~/compose/data:/data
+      # - ./service-a:/workspace
+    # env_file: 
+    #   - ./.env
+    ports:
+      - "40000:40000"
+    # networks:
+    #   - new
+      # - .:/workspace:cached
+    # tmpfs:
+    #   - /run
+
+
+# networks:
+#   new:
+# secrets:
+#   my_secret:
+#     file: ./secret.txt
+# configs:
+#   my_config:
+#     file: ./config.txt
+# volumes:
+#   srv_data:
+    # external: true
+    # name: my-app-data
